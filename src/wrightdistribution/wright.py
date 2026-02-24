@@ -52,10 +52,10 @@ def wright(Ns, Na, Nb, h, n_nodes=N_NODES):
     Returns:
         Wright NamedTuple with precomputed normalization constant.
     """
-    Ns = jnp.asarray(Ns, dtype=jnp.float64)
-    Na = jnp.asarray(Na, dtype=jnp.float64)
-    Nb = jnp.asarray(Nb, dtype=jnp.float64)
-    h = jnp.asarray(h, dtype=jnp.float64)
+    Ns = jnp.asarray(Ns)
+    Na = jnp.asarray(Na)
+    Nb = jnp.asarray(Nb)
+    h = jnp.asarray(h)
     Z = zfun(Ns, 2 * Na, 2 * Nb, h, n_nodes)
     return Wright(Ns=Ns, Na=Na, Nb=Nb, h=h, Z=Z, n_nodes=n_nodes)
 
@@ -97,14 +97,14 @@ def yfun(Ns, A, B, h, n_nodes=N_NODES):
 
 def wright_pdf(d: Wright, p):
     """Probability density function of the Wright distribution at p."""
-    p = jnp.asarray(p, dtype=jnp.float64)
+    p = jnp.asarray(p)
     A, B = 2 * d.Na, 2 * d.Nb
     return p ** (A - 1) * (1 - p) ** (B - 1) * cfun(p, d.Ns, d.h) / d.Z
 
 
 def wright_logpdf(d: Wright, p):
     """Log probability density function of the Wright distribution at p."""
-    p = jnp.asarray(p, dtype=jnp.float64)
+    p = jnp.asarray(p)
     A, B = 2 * d.Na, 2 * d.Nb
     return (
         (A - 1) * jnp.log(p)
@@ -151,7 +151,7 @@ def wright_sfs(d: Wright, bins, n_nodes=None):
         (midpoints, integrals): bin midpoints and integrated density per bin.
     """
     n = n_nodes if n_nodes is not None else d.n_nodes
-    bins = jnp.asarray(bins, dtype=jnp.float64)
+    bins = jnp.asarray(bins)
     midpoints = (bins[:-1] + bins[1:]) / 2
 
     def _integrate_bin(lo, hi):

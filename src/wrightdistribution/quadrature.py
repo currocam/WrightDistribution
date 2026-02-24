@@ -21,12 +21,12 @@ def gauss_jacobi(n: int, alpha, beta):
     Returns:
         (nodes, weights): arrays of shape (n,).
     """
-    alpha = jnp.asarray(alpha, dtype=jnp.float64)
-    beta = jnp.asarray(beta, dtype=jnp.float64)
+    alpha = jnp.asarray(alpha)
+    beta = jnp.asarray(beta)
 
     # Recurrence coefficients for monic Jacobi polynomials.
     # Three-term recurrence: P_{k+1}(x) = (x - a_k) P_k(x) - b_k P_{k-1}(x)
-    i = jnp.arange(n, dtype=jnp.float64)
+    i = jnp.arange(n)
     ab = alpha + beta
 
     # Diagonal: a_i = (beta^2 - alpha^2) / ((2i + ab)(2i + ab + 2))
@@ -40,7 +40,7 @@ def gauss_jacobi(n: int, alpha, beta):
 
     # Off-diagonal (for i = 1, ..., n-1):
     # b_i = 4*i*(i+alpha)*(i+beta)*(i+ab) / ((2i+ab)^2 * ((2i+ab)^2 - 1))
-    j = jnp.arange(1, n, dtype=jnp.float64)
+    j = jnp.arange(1, n)
     numer = 4 * j * (j + alpha) * (j + beta) * (j + ab)
     s = 2 * j + ab
     denom_off = s**2 * (s**2 - 1)
