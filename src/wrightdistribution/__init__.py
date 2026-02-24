@@ -3,6 +3,7 @@
 from .quadrature import gauss_jacobi
 from .wright import (
     Wright,
+    cfun,
     wright,
     wright_epq,
     wright_logpdf,
@@ -14,6 +15,7 @@ from .wright import (
 
 __all__ = [
     "Wright",
+    "cfun",
     "gauss_jacobi",
     "wright",
     "wright_epq",

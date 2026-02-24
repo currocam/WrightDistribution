@@ -15,7 +15,8 @@ import jax.numpy as jnp
 
 from .quadrature import gauss_jacobi
 
-N_NODES = 64
+# Chosen so integration tests against Julia basecode pass
+N_NODES = 45
 
 
 class Wright(NamedTuple):

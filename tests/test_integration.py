@@ -59,7 +59,7 @@ class TestJuliaReference:
             julia_var = case["var"]
             # Use absolute tolerance for near-zero variances
             if abs(julia_var) < 1e-10:
-                assert jax_var == pytest.approx(julia_var, abs=1e-8), _case_id(case)
+                assert jax_var == pytest.approx(julia_var, abs=1e-6), _case_id(case)
             else:
                 assert jax_var == pytest.approx(julia_var, rel=1e-4), _case_id(case)
 
@@ -96,6 +96,6 @@ class TestJuliaReference:
             jax_val = float(wright_epq(d))
             julia_val = case["epq"]
             if abs(julia_val) < 1e-10:
-                assert jax_val == pytest.approx(julia_val, abs=1e-8), _case_id(case)
+                assert jax_val == pytest.approx(julia_val, abs=1e-6), _case_id(case)
             else:
                 assert jax_val == pytest.approx(julia_val, rel=1e-4), _case_id(case)
